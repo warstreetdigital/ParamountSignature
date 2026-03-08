@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signature Restaurant & Bar — Branded Audio Identity Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    font-family:Inter, sans-serif;
+    background:#0b0b0b;
+    color:#f5f5f5;
+    min-height:100vh;
+    user-select:none;
+    overflow-x:hidden;
+}
+.overlay-lock{
+    position:fixed;inset:0;pointer-events:none;
+    background:radial-gradient(circle at center, rgba(255,255,255,0.02), rgba(0,0,0,0.35));
+    z-index:2;
+}
+.header{
+    padding:90px 24px 70px;
+    text-align:center;
+    position:relative;
+}
+.header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, transparent 60%, rgba(255,140,60,0.18) 85%, rgba(255,140,60,0.35) 100%);
+    z-index:0;
+}
+.header > *{position:relative; z-index:1;}
+.header h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:42px;
+    margin:0;
+    letter-spacing:2px;
+}
+.header p{
+    margin-top:10px;
+    color:#bbb;
+    font-size:15px;
+}
+/* Hero shadow card at bottom */
+.hero-base{
+    animation:heroGlow 10s ease-in-out infinite;
+    margin:60px auto 0;
+    max-width:520px;
+    height:80px;
+    border-radius:24px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0));
+    box-shadow:0 40px 80px rgba(255,140,60,0.45),0 20px 40px rgba(0,0,0,0.9);
+}
+
+/* Audio container */
+.container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:40px 20px 100px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:28px;
+}
+/* Cards */
+.card{
+    background:linear-gradient(180deg,#141414,#0f0f0f);
+    border-radius:22px;
+    padding:30px;
+    border:1px solid rgba(255,255,255,0.12);
+    box-shadow:0 25px 60px rgba(0,0,0,0.75);
+    position:relative;
+    overflow:hidden;
+}
+.card::before{
+    content:"";
+    position:absolute;
+    inset:-20px;
+    background:
+      radial-gradient(circle at bottom center, rgba(255,180,80,0.25), transparent 45%),
+      radial-gradient(circle at top center, rgba(255,200,120,0.10), transparent 50%),
+      radial-gradient(circle at left center, rgba(255,170,100,0.12), transparent 55%),
+      radial-gradient(circle at right center, rgba(255,170,100,0.12), transparent 55%);
+    z-index:0;
+    animation:ambientPulse 8s ease-in-out infinite;
+}
+.card > *{position:relative; z-index:1;}
+.card::after{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.03),transparent);
+    opacity:0;transition:.6s;
+}
+.card:hover::after{opacity:1;}
+.mode{
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#aaa;
+}
+.title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:20px;
+    margin:6px 0 8px;
+}
+.desc{
+    font-size:13px;
+    color:#bbb;
+    line-height:1.5;
+}
+.controls{
+    margin-top:18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+.play{
+    width:54px;height:54px;border-radius:50%;
+    border:1px solid rgba(255,255,255,0.3);
+    background:rgba(0,0,0,0.6);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;font-size:18px;
+}
+.progress-wrap{
+    flex:1;height:6px;background:#222;border-radius:6px;overflow:hidden;
+}
+.progress{
+    height:100%;width:0%;background:linear-gradient(90deg,#ff8c3c,#fff);
+}
+.footer{
+    text-align:center;
+    padding:40px 20px;
+    font-size:11px;
+    color:#777;
+    border-top:1px solid rgba(255,255,255,0.08);
+}
+/* Animations */
+@keyframes ambientPulse{
+  0%{opacity:0.6; filter:blur(0px)}
+  50%{opacity:1; filter:blur(2px)}
+  100%{opacity:0.6; filter:blur(0px)}
+}
+@keyframes heroGlow{
+  0%{box-shadow:0 40px 80px rgba(255,140,60,0.25), 0 20px 40px rgba(0,0,0,0.9)}
+  50%{box-shadow:0 50px 120px rgba(255,160,100,0.45), 0 25px 50px rgba(0,0,0,0.95)}
+  100%{box-shadow:0 40px 80px rgba(255,140,60,0.25), 0 20px 40px rgba(0,0,0,0.9)}
+}
+
+/* WhatsApp Button */
+.whatsapp-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    z-index:999;
+    background:#25D366;
+    color:#fff;
+    padding:14px 20px;
+    border-radius:50px;
+    font-weight:600;
+    font-family:Inter,sans-serif;
+    cursor:pointer;
+    text-decoration:none;
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+</style>
+</head>
+<body>
+<div class="overlay-lock"></div>
+
+<div class="header">
+    <h1>SIGNATURE RESTAURANT & BAR</h1>
+    <p>Branded Audio Identity Demo · Curated Playlist Experience · Proposal Presentation</p>
+    <div class="hero-base"></div>
+</div>
+
+<div class="container">
+  <!-- Track Cards: 12 Tracks -->
+  <div class="card">
+      <div class="mode">Arrival Mode</div>
+      <div class="title">Signature Arrival</div>
+      <div class="desc">Warm welcome. First impression. Luxury entry energy for your guests.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t1',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p1"></div></div>
+      </div>
+      <audio id="t1" src="/SignatureArrival.mp3"></audio>
+  </div>
+
+  <div class="card">
+      <div class="mode">Sunset Dining</div>
+      <div class="title">Seke Road Sunset</div>
+      <div class="desc">Early evening dining ambience. Golden hour warmth and atmosphere.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t2',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p2"></div></div>
+      </div>
+      <audio id="t2" src="/SekeRoadSunset.mp3"></audio>
+  </div>
+
+  <div class="card">
+      <div class="mode">Dining Flow</div>
+      <div class="title">Grill & Ember Rhythm</div>
+      <div class="desc">Steady and soulful. Matches kitchen energy and plated service tempo.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t3',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p3"></div></div>
+      </div>
+      <audio id="t3" src="/GrillEmberRhythm.mp3"></audio>
+  </div>
+
+  <div class="card">
+      <div class="mode">Background Mode</div>
+      <div class="title">Table Conversations</div>
+      <div class="desc">Elegant background music to maintain social balance and calm energy.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t4',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p4"></div></div>
+      </div>
+      <audio id="t4" src="/TableConversations.mp3"></audio>
+  </div>
+
+  <div class="card">
+      <div class="mode">Cocktail Hour</div>
+      <div class="title">Cocktail Hour Elevation</div>
+      <div class="desc">Stylish, polished, confident. Pre-bar transition playlist.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t5',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p5"></div></div>
+      </div>
+      <audio id="t5" src="/CocktailHourElevation.mp3"></audio>
+  </div>
+
+  <div class="card">
+      <div class="mode">Social Lift</div>
+      <div class="title">Social Energy Lift</div>
+      <div class="desc">Vibrant warm grooves to energize guest interaction.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t6',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p6"></div></div>
+      </div>
+      <audio id="t6" src="/SocialEnergyLift.mp3"></audio>
+  </div>
+
+  <div class="card">
+      <div class="mode">Bar Identity</div>
+      <div class="title">Bar Signature Pulse</div>
+      <div class="desc">Defines the nightlife identity with rhythmic smooth house influence.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t7',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p7"></div></div>
+      </div>
+      <audio id="t7" src="/BarSignaturePulse.mp3"></audio>
+  </div>
+
+  <div class="card">
+      <div class="mode">Weekend Activation</div>
+      <div class="title">Weekend Activation</div>
+      <div class="desc">Premium up-tempo energy for Friday & Saturday nights.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t8',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p8"></div></div>
+      </div>
+      <audio id="t8" src="/WeekendActivation.mp3"></audio>
+  </div>
+
+  <div class="card">
+      <div class="mode">Local Identity</div>
+      <div class="title">Urban Zimbabwe Blend</div>
+      <div class="desc">Subtle Zimbabwean urban flavor. Contemporary cultural touch.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t9',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p9"></div></div>
+      </div>
+      <audio id="t9" src="/UrbanZimbabweBlend.mp3"></audio>
+  </div>
+
+  <div class="card">
+      <div class="mode">DJ Transition</div>
+      <div class="title">DJ Transition Flow</div>
+      <div class="desc">Smooth handover between playlist and live DJ sets.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t10',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p10"></div></div>
+      </div>
+      <audio id="t10" src="/DJTransitionFlow.mp3"></audio>
+  </div>
+
+  <div class="card">
+      <div class="mode">After Dinner</div>
+      <div class="title">After Dinner Lounge</div>
+      <div class="desc">Slow, sophisticated lounge mix for post-meal relaxation.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t11',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p11"></div></div>
+      </div>
+      <audio id="t11" src="/AfterDinnerLounge.mp3"></audio>
+  </div>
+
+  <div class="card">
+      <div class="mode">Closing Mode</div>
+      <div class="title">Midnight Signature</div>
+      <div class="desc">Deep, memorable closing track to leave lasting impression.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t12',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p12"></div></div>
+      </div>
+      <audio id="t12" src="/MidnightSignature.mp3"></audio>
+  </div>
+</div>
+
+<!-- Presentation / Pitch Section -->
+<div class="container" style="grid-template-columns:1fr;">
+  <div class="card">
+    <div class="mode">Why This Matters</div>
+    <div class="title">Music as Brand Infrastructure</div>
+    <div class="desc">
+      Guests don’t remember drinks. They remember atmosphere.  
+      Branded playlists turn ambience into identity, identity into memory, and memory into loyalty.  
+      This system positions Signature as a full experience brand — not just a restaurant or bar.
+    </div>
+  </div>
+  <div class="card">
+    <div class="mode">Business Impact</div>
+    <div class="title">What Branded Audio Does</div>
+    <div class="desc">
+      • Increases customer stay time<br>
+      • Enhances mood & energy consistency<br>
+      • Creates emotional brand association<br>
+      • Strengthens venue identity<br>
+      • Builds loyalty through memory imprinting<br>
+      • Differentiates from generic bars & restaurants
+    </div>
+  </div>
+  <div class="card">
+    <div class="mode">Deployment Zones</div>
+    <div class="title">Where Playlists Are Used</div>
+    <div class="desc">
+      • Entrance & Arrival<br>
+      • Bar service hours<br>
+      • Lounge seating<br>
+      • Cocktail hours<br>
+      • VIP sections<br>
+      • Early evening ambience<br>
+      • Late night wind-down<br>
+      • Private events<br>
+      • Brand activations<br>
+      • Themed nights
+    </div>
+  </div>
+  <div class="card">
+    <div class="mode">Brand Strategy</div>
+    <div class="title">From Venue to Brand Experience</div>
+    <div class="desc">
+      Music becomes part of Signature’s identity system — integrated with interior design, service, lighting, and visual branding.
+    </div>
+  </div>
+  <div class="card">
+    <div class="mode">Commercial Model</div>
+    <div class="title">Service, Not Just Playlist</div>
+    <div class="desc">
+      Expandable into:<br>
+      • Monthly sound curation<br>
+      • Seasonal playlist updates<br>
+      • Event-based sound design<br>
+      • Brand sound identity ownership<br>
+      • Exclusive venue audio branding
+    </div>
+  </div>
+  <div class="card">
+    <div class="mode">Partnership</div>
+    <div class="title">Long-Term Vision</div>
+    <div class="desc">
+      Signature becomes the first branded-audio culinary experience in Harare — not just a restaurant, but a fully defined sonic brand.
+    </div>
+  </div>
+</div>
+
+<a href="https://wa.me/263779388560?text=Hello%20Signature%20Team%2C%20I%20am%20interested%20in%20your%20branded%20audio%20playlist%20proposal." class="whatsapp-btn" target="_blank">📩 Contact via WhatsApp</a>
+
+<div class="footer">
+  © 2026 · Signature Restaurant & Bar · Branded Audio Demo · All Rights Reserved
+</div>
+
+<script>
+// Lock interactions
+document.addEventListener('contextmenu', e=>e.preventDefault());
+document.onkeydown=function(e){
+    if(e.keyCode==123) return false;
+    if(e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) return false;
+    if(e.ctrlKey && e.key.toLowerCase()=='u') return false;
+};
+document.body.onselectstart=()=>false;
+document.body.ondragstart=()=>false;
+
+// Audio Engine
+const audios = ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11','t12'];
+
+function toggle(id,btn){
+    audios.forEach(a=>{
+        if(a!==id){
+            const o=document.getElementById(a);
+            o.pause();o.currentTime=0;
+        }
+    });
+    const audio=document.getElementById(id);
+    if(audio.paused){audio.play();btn.innerHTML='⏸';} 
+    else{audio.pause();btn.innerHTML='▶';}
+}
+
+// Progress update
+setInterval(()=>{
+    audios.forEach((id,i)=>{
+        const a=document.getElement
