@@ -276,10 +276,116 @@ body{
       </div>
       <audio id="t9" src="LocalFlavoursEchoes.mp3"></audio>
   </div>
+
+  <!-- Cards t10–t12 currently have no MP3 files -->
+  <div class="card">
+      <div class="mode">DJ Transition</div>
+      <div class="title">DJ Transition Flow</div>
+      <div class="desc">Smooth handover between playlist and live DJ sets.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t10',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p10"></div></div>
+      </div>
+      <!-- No file available -->
+      <audio id="t10"></audio>
+  </div>
+
+  <div class="card">
+      <div class="mode">After Dinner</div>
+      <div class="title">After Dinner Lounge</div>
+      <div class="desc">Slow, sophisticated lounge mix for post-meal relaxation.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t11',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p11"></div></div>
+      </div>
+      <!-- No file available -->
+      <audio id="t11"></audio>
+  </div>
+
+  <div class="card">
+      <div class="mode">Closing Mode</div>
+      <div class="title">Midnight Signature</div>
+      <div class="desc">Deep, memorable closing track to leave lasting impression.</div>
+      <div class="controls">
+          <div class="play" onclick="toggle('t12',this)">▶</div>
+          <div class="progress-wrap"><div class="progress" id="p12"></div></div>
+      </div>
+      <!-- No file available -->
+      <audio id="t12"></audio>
+  </div>
 </div>
 
 <a href="https://wa.me/263779388560?text=Hello%20Signature%20Team%2C%20I%20am%20interested%20in%20your%20branded%20audio%20playlist%20proposal." class="whatsapp-btn" target="_blank">📩 Contact via WhatsApp</a>
+<div class="container" style="grid-template-columns:1fr;">
+  <div class="card">
+    <div class="mode">Why This Matters</div>
+    <div class="title">Music as Brand Infrastructure</div>
+    <div class="desc">
+      Guests don’t remember drinks. They remember atmosphere.  
+      Branded playlists turn ambience into identity, identity into memory, and memory into loyalty.  
+      This system positions Signature as a full experience brand — not just a restaurant or bar.
+    </div>
+  </div>
 
+  <div class="card">
+    <div class="mode">Business Impact</div>
+    <div class="title">What Branded Audio Does</div>
+    <div class="desc">
+      • Increases customer stay time<br>
+      • Enhances mood & energy consistency<br>
+      • Creates emotional brand association<br>
+      • Strengthens venue identity<br>
+      • Builds loyalty through memory imprinting<br>
+      • Differentiates from generic bars & restaurants
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="mode">Deployment Zones</div>
+    <div class="title">Where Playlists Are Used</div>
+    <div class="desc">
+      • Entrance & Arrival<br>
+      • Bar service hours<br>
+      • Lounge seating<br>
+      • Cocktail hours<br>
+      • VIP sections<br>
+      • Early evening ambience<br>
+      • Late night wind-down<br>
+      • Private events<br>
+      • Brand activations<br>
+      • Themed nights
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="mode">Brand Strategy</div>
+    <div class="title">From Venue to Brand Experience</div>
+    <div class="desc">
+      Music becomes part of Signature’s identity system — integrated with interior design, service, lighting, and visual branding.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="mode">Commercial Model</div>
+    <div class="title">Service, Not Just Playlist</div>
+    <div class="desc">
+      Expandable into:<br>
+      • Monthly sound curation<br>
+      • Seasonal playlist updates<br>
+      • Event-based sound design<br>
+      • Brand sound identity ownership<br>
+      • Exclusive venue audio branding
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="mode">Partnership</div>
+    <div class="title">Long-Term Vision</div>
+    <div class="desc">
+      Signature becomes the first branded-audio culinary experience in Harare — not just a restaurant, but a fully defined sonic brand.
+    </div>
+  </div>
+</div>
 <div class="footer">
   © 2026 · Signature Restaurant & Bar · Branded Audio Demo · All Rights Reserved
 </div>
@@ -296,7 +402,7 @@ document.body.onselectstart=()=>false;
 document.body.ondragstart=()=>false;
 
 // Audio Engine
-const audios = ['t1','t2','t3','t4','t5','t6','t7','t8','t9'];
+const audios = ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11','t12'];
 
 function toggle(id,btn){
     audios.forEach(a=>{
@@ -306,7 +412,7 @@ function toggle(id,btn){
         }
     });
     const audio=document.getElementById(id);
-    if(audio.paused){audio.play();btn.innerHTML='⏸';} 
+    if(audio.paused && audio.src){audio.play();btn.innerHTML='⏸';} 
     else{audio.pause();btn.innerHTML='▶';}
 }
 
@@ -321,4 +427,4 @@ setInterval(()=>{
 </script>
 
 </body>
-                                                                                                                                                                                                                </html>
+</html>
